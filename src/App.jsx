@@ -1,18 +1,20 @@
-import './App.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from './components/card-SC';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
+import audio from "./components/audio.component";
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/bundle';
+import './App.css';
 
 function App() {
   const [mockData, setMockData] = useState([]);
   const [defs, setDefs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchMockData() {
@@ -53,18 +55,31 @@ function App() {
 
       Promise.all(promises).then((definitions) => {
         setDefs(definitions);
+        setIsLoading(false);
       });
     }
   }, [mockData]);
 
-  console.log(defs);
   return (
     <div className="App">
-
-      <Card cardInfo={defs} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <Swiper>
+          {mockData.map((data, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                word={data.word}
+                definition={defs[index].definition}
+                sound={defs[index].sound}
+                greek={defs[index].greek}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 }
-
 
 export default App;
