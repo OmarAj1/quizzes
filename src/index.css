@@ -82,7 +82,6 @@ body {
 }
 
 .swiper-slide {
-  width: 10rem;
   height: 42rem;
   position: relative;
 }
@@ -91,9 +90,10 @@ body {
   .swiper_container {
     height: 47rem;
   }
+
   .swiper-slide {
-    width: 10rem !important;
-    height: 36rem !important;
+    width: 10rem;
+    height: 36rem;
   }
 
 }
@@ -113,36 +113,42 @@ body {
 }
 
 .slider-controler .swiper-button-next {
-  left: 58% !important;
-  transform: translateX(-58%) !important;
+  left: 58%;
+  transform: translateX(-58%);
 }
 
 @media (max-width: 990px) {
   .slider-controler .swiper-button-next {
-    left: 70% !important;
-    transform: translateX(-70%) !important;
+    left: 70%;
+    transform: translateX(-70%);
   }
 }
 
 @media (max-width: 450px) {
   .slider-controler .swiper-button-next {
-    left: 80% !important;
-    transform: translateX(-80%) !important;
+    left: 80%;
+    transform: translateX(-80%);
   }
 }
 
 @media (max-width: 990px) {
   .slider-controler .swiper-button-prev {
-    left: 30% !important;
-    transform: translateX(-30%) !important;
+    left: 30%;
+    transform: translateX(-30%);
   }
 }
 
 @media (max-width: 450px) {
   .slider-controler .swiper-button-prev {
-    left: 20% !important;
-    transform: translateX(-20%) !important;
+    left: 20%;
+    transform: translateX(-20%);
   }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: transparent;
+  border: none;
 }
 
 .slider-controler .slider-arrow {
@@ -165,9 +171,9 @@ body {
 }
 
 .swiper-pagination {
-  position: relative;
-  width: 15rem !important;
-  bottom: 1rem;
+  position: absolute;
+  width: 15rem;
+  bottom: 20rem;
 }
 
 .swiper-pagination .swiper-pagination-bullet {
@@ -177,6 +183,7 @@ body {
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
 }
+
 .card {
   margin: 40px;
   display: flex;
@@ -184,7 +191,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
   background-color: var(--primary);
   height: 300px;
   /* width: 300px; */
@@ -198,7 +205,8 @@ body {
 }
 
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -215,8 +223,8 @@ body {
 
 .card-back {
   transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -224,35 +232,12 @@ body {
 .card.flipped {
   transform: rotateY(180deg);
 }
+
 video {
-    max-width: 900px;
-}
-/* .btn-container {
-    margin-top: 50px;
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
+  max-width: 900px;
 }
 
-button {
-    padding: 2px 7px;
-    cursor: pointer;
-    background-color: black;
-    color:white;
-    transform: scale(1.2);
-    border: 2px solid transparent;
-    transition: all .2s linear;
-}
-button:hover {
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-
-} */
-.spell{
+.spell {
   width: 25%;
   position: absolute;
   left: 0;
@@ -264,22 +249,43 @@ button:hover {
   padding: 10px;
 
 }
+
 .icon {
-  width:30px;
+  width: 30px;
   height: 30px;
   color: black;
-
 }
-#icon-button{
+
+#icon-button {
   border-radius: 50%;
   width: 30px;
   height: 30px;
   border: none;
   background-color: transparent;
 }
-.icon:hover {
-    /* border: 2px solid black; */
-    /* background-color: white; */
-    color: black;
 
+.icon:hover {
+  color: black;
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 100px);
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  right: var(--swiper-navigation-sides-offset, 50px);
+}
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+  left: var(--swiper-navigation-sides-offset, 50px);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev:after {
+  margin-top: calc(-80px - (var(--swiper-navigation-size)/ 2));
+  width: 25px !important;
+  height: 10px !important;
+  font-size: 20px;
 }

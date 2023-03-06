@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from './components/card-SC';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
-import audio from "./components/audio.component";
+import Audio from './components/audio.component';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -15,6 +15,7 @@ function App() {
   const [mockData, setMockData] = useState([]);
   const [defs, setDefs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [swiper, setSwiper] = useState(null);
 
   useEffect(() => {
     async function fetchMockData() {
@@ -60,12 +61,43 @@ function App() {
     }
   }, [mockData]);
 
+  // const handleNext = () => {
+  //   if (swiper !== null) {
+  //     swiper.slideNext();
+  //   }
+  // };
+
+  // const handlePrev = () => {
+  //   if (swiper !== null) {
+  //     swiper.slidePrev();
+  //   }
+  // };
+
   return (
     <div className="App">
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <Swiper>
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+          }}
+          pagination={{ el: ".swiper-pagination", clickable: true }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+            clickable: true,
+          }}
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="swiper_container"
+        >
           {mockData.map((data, index) => (
             <SwiperSlide key={index}>
               <Card
@@ -76,10 +108,16 @@ function App() {
               />
             </SwiperSlide>
           ))}
+          <div className="swiper-controls">
+            <div className="swiper-arrow-container">
+              <button className="swiper-button-prev"></button>
+              <button className="swiper-button-next"></button>
+            </div>
+            <div className="swiper-pagination"></div>
+          </div>
         </Swiper>
       )}
     </div>
   );
 }
-
 export default App;
