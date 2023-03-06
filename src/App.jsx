@@ -61,18 +61,6 @@ function App() {
     }
   }, [mockData]);
 
-  // const handleNext = () => {
-  //   if (swiper !== null) {
-  //     swiper.slideNext();
-  //   }
-  // };
-
-  // const handlePrev = () => {
-  //   if (swiper !== null) {
-  //     swiper.slidePrev();
-  //   }
-  // };
-
   return (
     <div className="App">
       {isLoading ? (
